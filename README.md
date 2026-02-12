@@ -1,18 +1,32 @@
-# 🎬 Kannada Movie Recommender System with Sentiment Analysis
+# 🎬 Content-Based Movie Recommender System with Sentiment Analysis using AJAX
 
-A Content-Based Movie Recommendation System built using Flask that recommends movies based on similarity and performs sentiment analysis on IMDb reviews.
-
----
-
-## 🚀 Project Overview
-
-This application recommends movies similar to the one selected by the user using **Cosine Similarity** and analyzes user reviews using a pre-trained NLP model.
-
-The system fetches movie details from TMDB API and performs web scraping to extract IMDb reviews for sentiment classification.
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Framework](https://img.shields.io/badge/Framework-Flask-red)
+![Frontend](https://img.shields.io/badge/Frontend-HTML/CSS/JS-green)
+![ML](https://img.shields.io/badge/ML-Scikit--Learn-orange)
 
 ---
 
-## 🛠 Tech Stack
+## 📌 Project Overview
+
+This is a **Content-Based Movie Recommendation System** built using Flask that recommends movies similar to the one selected by the user and performs **sentiment analysis** on IMDb reviews.
+
+The application fetches movie details (title, genre, runtime, rating, poster, etc.) using the TMDB API. It then uses the IMDb ID to scrape user reviews and classify them as **Positive (Good)** or **Negative (Bad)** using a trained NLP model.
+
+---
+
+## 🚀 Features
+
+* 🎯 Content-based movie recommendation engine
+* 🤖 Sentiment analysis on IMDb reviews
+* 🔍 Auto-suggestion search functionality
+* ⚡ AJAX-based dynamic frontend
+* 🌐 TMDB API integration
+* 🧠 Cosine similarity-based recommendation logic
+
+---
+
+## 🛠️ Tech Stack
 
 ### Backend
 
@@ -20,6 +34,7 @@ The system fetches movie details from TMDB API and performs web scraping to extr
 * Flask
 * Scikit-learn
 * NLTK
+* BeautifulSoup
 
 ### Frontend
 
@@ -28,10 +43,10 @@ The system fetches movie details from TMDB API and performs web scraping to extr
 * JavaScript
 * AJAX
 
-### Data & APIs
+### APIs & Data Sources
 
-* TMDB API (for movie details)
-* IMDb (for review scraping)
+* TMDB API (Movie details)
+* IMDb (Review scraping)
 
 ---
 
@@ -55,30 +70,44 @@ The system fetches movie details from TMDB API and performs web scraping to extr
 
 ### 1️⃣ Content-Based Recommendation
 
-* Movie features are combined into a single text column (`comb`)
-* CountVectorizer converts text into numerical vectors
-* Cosine similarity computes similarity score
-* Top 10 most similar movies are returned
+* Important movie features are combined into a single text column (`comb`).
+* `CountVectorizer` converts text data into numerical vectors.
+* `Cosine Similarity` calculates similarity between movies.
+* Top 10 most similar movies are returned to the user.
 
 ### 2️⃣ Sentiment Analysis
 
-* IMDb reviews are scraped
-* Reviews are transformed using saved vectorizer
-* Pre-trained ML model predicts sentiment
-* Reviews are classified as **Good** or **Bad**
+* IMDb reviews are scraped using BeautifulSoup.
+* Reviews are transformed using a saved vectorizer.
+* A trained ML model predicts sentiment.
+* Reviews are classified as **Good** or **Bad**.
 
 ---
 
-## 🧠 Similarity Formula
+## 📊 Similarity Score
 
-Cosine Similarity measures the cosine of the angle between two vectors:
+The system uses **Cosine Similarity**, which measures the cosine of the angle between two vectors in multi-dimensional space.
 
-* Value ranges between 0 and 1
-* Higher value → More similar movies
+* Score ranges from 0 to 1
+* Closer to 1 → More similar
+* Smaller angle → Higher similarity
+
+This method ensures that similarity is based on content features rather than movie popularity.
 
 ---
 
-## ▶️ How to Run Locally
+## 🔑 How to Get TMDB API Key
+
+1. Create an account on TMDB.
+2. Go to Account Settings → API.
+3. Apply for an API key.
+4. Copy your API key once approved.
+
+Replace `YOUR_API_KEY` inside `static/recommend.js` with your actual key.
+
+---
+
+## ▶️ How to Run the Project Locally
 
 ### 1️⃣ Clone the Repository
 
@@ -106,7 +135,7 @@ pip install -r requirements.txt
 python main.py
 ```
 
-Open browser and visit:
+Open your browser and visit:
 
 ```
 http://127.0.0.1:5000/
@@ -114,40 +143,18 @@ http://127.0.0.1:5000/
 
 ---
 
-## 🌐 Deployment
+## 🏗️ Architecture
 
-This project can be deployed on:
-
-* Hugging Face Spaces (Docker)
-* Render
-* Railway
-* Heroku (legacy)
+User Input → TMDB API → Recommendation Engine (CountVectorizer + Cosine Similarity) → IMDb Review Scraping → Sentiment Analysis Model → Display Results
 
 ---
 
-## 📈 Features
+## 📈 Future Improvements
 
-* Content-based recommendation engine
-* IMDb review scraping
-* Sentiment classification
-* Dynamic AJAX UI
-* TMDB API integration
+* Add multilingual movie support
+* Replace scraping with official review APIs
+* Use TF-IDF for improved similarity
+* Add user authentication system
+* Deploy with Docker for production use
 
----
 
-## 📌 Future Improvements
-
-* Add multilingual support
-* Replace scraping with official review API
-* Improve recommendation quality using TF-IDF
-* Add user authentication
-
----
-
-## 👩‍💻 Author
-
-Developed by Deepu
-
----
-
-⭐ If you found this project useful, consider giving it a star!
